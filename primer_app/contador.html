@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador con REACT</title>
+    <style>
+        div {
+            font-family: -apple-system, BlinkMactSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            Font-size: 24px;
+        }
+    </style>
+
+    <!-- Cargar React. -->
+    <!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Cargar (React) JSX . -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <h1>Mi primeros pasos por REACT con JSX (Contador)</h1>
+    <!-- escalable para creacion de avatares -->
+    <div id="app">
+        <!-- se listan desde el js los avatares -->
+    </div>
+
+    <script type="text/babel">
+        const $app = document.getElementById('app')
+
+        // uso de estados de Ract con JSX
+        const useState = React.useState;
+
+        // Uso de funciones en REACT siempre usar la primera con Mayuscula
+        function Contador() {
+            // let contadorSatate = useState(77);
+            // useState devuelve un arreglo de 2 objetos
+            // let contadorValue = contadorSatate[0];
+            // let contadorUpdate = contadorSatate[1];
+
+            // Desestructuración del State
+            const [contadorValue, contadorUpdate] = useState(33)
+            const [vecesUsado, vecesUpdate] = useState(0)
+
+            return (
+                <div>
+                    <span>{contadorValue}</span>
+                    <button onClick={() =>
+                        {
+                            contadorUpdate(contadorValue + 1)
+                            vecesUpdate(vecesUsado + 1)
+                        }
+                    }>
+                    Click here for increment +!!</button>
+                    <button onClick={() =>
+                        {
+                            contadorUpdate(contadorValue  - 1)
+                            vecesUpdate(vecesUsado + 1)
+                        }
+                    }>
+                    Click here for decrement -!!</button>
+                    <p>Veces usado {vecesUsado}</p>
+                </div>
+                // no renderiza nada y cambia la estructura div ya que el return solo renderiza un elemento
+                /*<Ract.Fragment>
+                    <button>Click here for increment!!</button>
+                    <button>Click here for decrement!!</button>
+                <Ract.Fragment>*/
+            );
+        }
+
+        // sirve para renderizar componentes en el DOM y mostrarlos en el html
+        ReactDOM.render(
+            <div>
+                <Contador />
+            </div>, 
+            $app
+        );
+    </script>
+</body>
+</html>
+
+
+
+
