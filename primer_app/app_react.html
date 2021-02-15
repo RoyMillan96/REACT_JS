@@ -12,13 +12,35 @@
             text-align: center;
             width: 100px;
         }
+
+        picture.is-small {
+            width: 50px;
+        }
+
+        picture.is-large {
+            width: 200px;
+        }
+
         img {
             box-shadow: 0 0 15px #000;
             border-radius: 50%;
-            width: 100px;
+            width: 100%;
         }
+
         img.disabled {
             opacity: 0.3;
+        }
+
+        i {
+            align-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            min-height: 50px;
+            display: flex;
+            justify-content:center;
+            display: block;
+            width: 100%;
         }
     </style>
 
@@ -49,15 +71,23 @@
         const useState = React.useState;
 
         // creación de componentes
-        const Avatar = params => {
+        const Avatar = ({ id, name = "Avatar", size}) => {
+
             // crear un estado
             const [enabled, setEnabled] = useState(true);
 
-            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+            const src = `https://randomuser.me/api/portraits/women/${id}.jpg`;
             // sin el type="text/babel" de JSX
             //return elementoReact('img', {src})
             // con JSX
-            const className = enabled ? "" : "disabled"
+            let pictureClassName = ""
+            if (size === "small") {
+                pictureClassName = 'is-small'
+            } else if (size === "large") {
+                pictureClassName = 'is-large'
+            }
+            // const picturelassName = size === "small" ? "is-small" : "";
+            const imgclassName = enabled ? "" : "disabled"
 
             return (
                 /* sin el uso de state
@@ -65,16 +95,25 @@
                     <img onClick={(event) => {
                         event.target.classList.toggle('disabled');
                     }} src={src}/>
-                    <strong><span>{params.name}</span></strong>
+                    <strong><span>{name}</span></strong>
                 </picture>*/
 
                 // con el uso de state
-                <picture>
-                    <img onClick={() => setEnabled(!enabled)} className={className} src={src}/>
-                    <strong><span>{params.name}</span></strong>
+                <picture className={pictureClassName}>
+                    {
+                        id ? (
+                            <img onClick={() => setEnabled(!enabled)} className={imgclassName} src={src}/>
+                        ) : <i><strong>Sin imagen</strong></i>
+                    }
+                    <strong><span>{enabled ? name : "Desactivada"}</span></strong>
                 </picture>
             );
         };
+
+        // Declarar propiedades por default forma antigua no recomendada
+        //Avatar.defaultProps = {
+        //    name: "Avatar"
+        //}
 
         // sirve para renderizar componentes en el DOM y mostrarlos en el html
         ReactDOM.render(
@@ -83,8 +122,11 @@
 
             // con JSX
             <div>
-                <Avatar id={66} name="Cinthia"/>
+                <Avatar name="Susana"size="large"/>
+                <Avatar id={66} name="Cinthia" size="small"/>
                 <Avatar id={82} name="Janeth"/>
+                <Avatar id={22} name="Cinthia" size="large"/>
+                <Avatar id={72}size="smalls"/>
             </div>, 
             $app
         );
