@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Avatar sin REACT</title>
+    <style>
+        picture {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100px;
+        }
+        img {
+            box-shadow: 0 0 15px #000;
+            border-radius: 50%;
+            width: 100px;
+        }
+        img.disabled {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mi primeros pasos por REACT</h1>
+    <h5>Woman in tech</h5>
+    <!--  No es escalable para llenar el HTML de los mismos datos 
+    <picture>
+        <img src="https://randomuser.me/api/portraits/women/66.jpg">
+        Cinthia
+    <picture>
+
+    <picture>
+        <img src="https://randomuser.me/api/portraits/women/82.jpg">
+        Janeth
+    </picture>
+    -->
+
+    <!-- Código que no utiliza REACT pero lo simula -->
+
+    <!-- escalable para creacion de avatares -->
+    <div id="app">
+        <!-- se listan desde el js los avatares -->
+    </div>
+
+    <script>
+        // Creación de componentes con JS sin REACT
+        const $app = document.getElementById('app')
+        const Avatar = params => {
+            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`
+            // Renderizado
+            return `
+                <picture>
+                    <img src="${src}">
+                    <strong>${params.name}<strong>
+                </picture>
+            `
+        }
+
+        // Envió de imagenes al html en el div de app
+        $app.innerHTML += Avatar({id: 66, name: 'Janeth'})
+        $app.innerHTML += Avatar({id: 82, name: 'Cinthia'})
+
+        // recuperar todos los elementos con forEach
+        $app.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('disabled')
+            })
+        })
+    </script>
+</body>
+</html>

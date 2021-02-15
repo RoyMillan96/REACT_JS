@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Avatar con REACT</title>
+    <style>
+        picture {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100px;
+        }
+        img {
+            box-shadow: 0 0 15px #000;
+            border-radius: 50%;
+            width: 100px;
+        }
+        img.disabled {
+            opacity: 0.3;
+        }
+    </style>
+
+    <!-- Cargar React. -->
+    <!-- Nota: cuando se despliegue, reemplazar "development.js" con "production.min.js". -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Cargar (React) JSX . -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <h1>Mi primeros pasos por REACT</h1>
+    <h5>Woman in tech</h5>
+    <!-- escalable para creacion de avatares -->
+    <div id="app">
+        <!-- se listan desde el js los avatares -->
+    </div>
+
+    <script type="text/babel">
+        const $app = document.getElementById('app')
+
+        // creacion de elementos con REACT en crudo sin JSX
+        // const elementoReact = React.createElement;
+
+        // uso de estados de Ract con JSX
+        const useState = React.useState;
+
+        // creación de componentes
+        const Avatar = params => {
+            // crear un estado
+            const [enabled, setEnabled] = useState(true);
+
+            const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
+            // sin el type="text/babel" de JSX
+            //return elementoReact('img', {src})
+            // con JSX
+            const className = enabled ? "" : "disabled"
+
+            return (
+                /* sin el uso de state
+                <picture>
+                    <img onClick={(event) => {
+                        event.target.classList.toggle('disabled');
+                    }} src={src}/>
+                    <strong><span>{params.name}</span></strong>
+                </picture>*/
+
+                // con el uso de state
+                <picture>
+                    <img onClick={() => setEnabled(!enabled)} className={className} src={src}/>
+                    <strong><span>{params.name}</span></strong>
+                </picture>
+            );
+        };
+
+        // sirve para renderizar componentes en el DOM y mostrarlos en el html
+        ReactDOM.render(
+            // sin JSX
+            // elementoReact("div", null, [elementoReact(Avatar, { id: 66}), elementoReact(Avatar, { id: 82})]), $app
+
+            // con JSX
+            <div>
+                <Avatar id={66} name="Cinthia"/>
+                <Avatar id={82} name="Janeth"/>
+            </div>, 
+            $app
+        );
+    </script>
+
+    <!-- 
+        Conceptos de REACT 
+        props = params (propiedades del componente, el comportamniento e interface cambie)
+
+        state = estados ()
+    -->
+
+</body>
+</html>
+
+
+
+
