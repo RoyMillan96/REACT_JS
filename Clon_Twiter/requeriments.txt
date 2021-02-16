@@ -1,0 +1,11 @@
+para este proyecto se necesita tener instalado 
+node.js
+npm (se instala junto con node)
+yarn  (npm install -g yarn)
+
+
+# antes de crear el proyecto instalar el paquete 
+npm i create-next-app
+
+# crear el proyecto 
+ npx create-next-app o yarn create next-app
