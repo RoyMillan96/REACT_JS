@@ -9,3 +9,10 @@ npm i create-next-app
 
 # crear el proyecto 
  npx create-next-app o yarn create next-app
+
+ # agregar firebase al proyecto 
+ yarn add firebase
+
+ para correr el servidor 
+ npm run
+ npm run dev
