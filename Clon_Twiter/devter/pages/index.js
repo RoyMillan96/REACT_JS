@@ -17,30 +17,11 @@ export default function Home() {
         <h1>
           <a href="https://nextjs.org">Devter!</a>
         </h1>
-        <nav>
-        <Link href="/timeline">
-          <a>Timeline</a>
-        </Link>
-        </nav>
       </Layouts>
 
       <style jsx>{`
-        h1 {
-          text-align: center;
-          font-size: 48px;
-        }
-
-        nav {
-          font-size: 24px;
-          text-align: center;
-        }
-
-        a {
-          color: #09f;
-          text-decoration: none;
-        }
+      
       `}
-
       </style>
     </div>
   )
